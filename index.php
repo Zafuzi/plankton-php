@@ -4,11 +4,12 @@
     function request_path(): string
     {
         $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-        if (empty($request_uri))
+        $parts = array_diff_assoc($request_uri);
+        if (empty($parts))
         {
             return '/';
         }
-        $path = implode('/', $request_uri);
+        $path = implode('/', $parts);
         if (($position = strpos($path, '?')) !== FALSE)
         {
             $path = substr($path, 0, $position);
