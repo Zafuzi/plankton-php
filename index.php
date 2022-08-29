@@ -1,5 +1,5 @@
 <?php
-    $version = '0.0.3 - Chalice';
+    $version = '0.0.4 - Dappledorf';
 
     function request_path(): string
     {
