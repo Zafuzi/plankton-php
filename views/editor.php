@@ -1,1 +1,1 @@
-<h1>Editor</h1>
+<h1>Editor <i class="icon icon-paint"></i></h1>

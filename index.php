@@ -37,7 +37,7 @@
         <title>Plankton <?= $version ?></title>
 
         <link rel="stylesheet" href="/styles/normalize.css">
-        <link rel="stylesheet" href="/styles/ionicons.css">
+        <link rel="stylesheet" href="/styles/icons.css">
         <link rel="stylesheet" href="/styles/app.css">
         <link rel="stylesheet" href="/styles/home.css">
     </head>
@@ -45,10 +45,9 @@
     <body>
         <header class="padding">
             <h1>Plankton <?= $version?></h1>
-            <h2><?= request_path() ?></h2>
             <nav>
                 <a class="<?= isActiveRoute('home')?>" href="/">Home</a>
-                <a class="<?= isActiveRoute('about')?>" href="/about">About</a>
+                <a class="<?= isActiveRoute('help')?>" href="/help">Help</a>
                 <a class="<?= isActiveRoute('editor')?>" href="/editor?gameName=test_game_name">Editor</a>
             </nav>
         </header>
@@ -59,9 +58,9 @@
                 {
                     require('./views/home.php');
                 }
-                if(isActiveRoute('about'))
+                if(isActiveRoute('help'))
                 {
-                    require('./views/about.php');
+                    require('./views/help.php');
                 }
                 if(isActiveRoute('editor')) {
                     require('./views/editor.php');

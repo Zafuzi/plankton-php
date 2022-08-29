@@ -1,0 +1,8 @@
+.icon {
+    font-family: menlo, monospace;
+    font-style: normal;
+    font-weight: bold;
+}
+.icon.icon-home:before { content: "\1F3E0"; }
+.icon.icon-help:before { content: "\1F6A9"; }
+.icon.icon-paint:before { content: "\1F3A8"; }

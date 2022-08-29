@@ -1,4 +1,4 @@
-<h1>Home</h1>
+<h1>Home <i class="icon icon-home"></i></h1>
 <form class="flex flow-column gap-16" method="POST" action="/login" id="loginForm">
     <label class="flex flow-column gap-8">
         Username
