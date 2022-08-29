@@ -4,13 +4,11 @@
     function request_path(): string
     {
         $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-        $script_name = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'));
-        $parts = array_diff_assoc($request_uri, $script_name);
-        if (empty($parts))
+        if (empty($request_uri))
         {
             return '/';
         }
-        $path = implode('/', $parts);
+        $path = implode('/', $request_uri);
         if (($position = strpos($path, '?')) !== FALSE)
         {
             $path = substr($path, 0, $position);
@@ -37,10 +35,10 @@
         <meta name="description" content="This is a small performant template for building smaller websites.">
         <title>Plankton <?= $version ?></title>
 
-        <link rel="stylesheet" href="styles/normalize.css">
-        <link rel="stylesheet" href="styles/ionicons.css">
-        <link rel="stylesheet" href="styles/app.css">
-        <link rel="stylesheet" href="styles/home.css">
+        <link rel="stylesheet" href="/styles/normalize.css">
+        <link rel="stylesheet" href="/styles/ionicons.css">
+        <link rel="stylesheet" href="/styles/app.css">
+        <link rel="stylesheet" href="/styles/home.css">
     </head>
 
     <body>
