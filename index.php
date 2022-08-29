@@ -1,5 +1,31 @@
 <?php
     $version = '0.0.1 - Alphonse';
+
+    function request_path(): string
+    {
+        $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+        $script_name = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'));
+        $parts = array_diff_assoc($request_uri, $script_name);
+        if (empty($parts))
+        {
+            return '/';
+        }
+        $path = implode('/', $parts);
+        if (($position = strpos($path, '?')) !== FALSE)
+        {
+            $path = substr($path, 0, $position);
+        }
+        if(empty($path))
+        {
+            return "home";
+        }
+        return $path;
+    }
+
+    function isActiveRoute(string $compareRoute): string
+    {
+        return $compareRoute === request_path() ? "active" : "";
+    }
 ?>
 
 <!doctype html>
@@ -14,12 +40,34 @@
         <link rel="stylesheet" href="styles/normalize.css">
         <link rel="stylesheet" href="styles/ionicons.css">
         <link rel="stylesheet" href="styles/app.css">
+        <link rel="stylesheet" href="styles/home.css">
     </head>
-    <h1>Plankton <?= $version?></h1>
-    <p>
-        <?php
-            $test = 'Hello World!';
-            echo $test . 'This is a paragraph';
-        ?>
-    </p>
+
+    <body>
+        <header class="padding">
+            <h1>Plankton <?= $version?></h1>
+            <h2><?= request_path() ?></h2>
+            <nav>
+                <a class="<?= isActiveRoute('home')?>" href="/">Home</a>
+                <a class="<?= isActiveRoute('about')?>" href="/about">About</a>
+                <a class="<?= isActiveRoute('editor')?>" href="/editor?gameName=test_game_name">Editor</a>
+            </nav>
+        </header>
+
+        <main class="padding">
+            <?php
+                if(isActiveRoute('home'))
+                {
+                    include('./views/home.php');
+                }
+                if(isActiveRoute('about'))
+                {
+                    include('./views/about.php');
+                }
+                if(isActiveRoute('editor')) {
+                    include('./views/editor.php');
+                }
+            ?>
+        </main>
+    </body>
 </html>

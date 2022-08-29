@@ -1,0 +1,11 @@
+#loginForm {
+    max-width: 500px;
+}
+
+header nav a {
+    font-size: 18pt;
+    color: var(--neutral);
+}
+header nav a.active {
+    color: var(--darker);
+}
