@@ -56,14 +56,14 @@
             <?php
                 if(isActiveRoute('home'))
                 {
-                    include('./views/home.php');
+                    require('./views/home.php');
                 }
                 if(isActiveRoute('about'))
                 {
-                    include('./views/about.php');
+                    require('./views/about.php');
                 }
                 if(isActiveRoute('editor')) {
-                    include('./views/editor.php');
+                    require('./views/editor.php');
                 }
             ?>
         </main>
