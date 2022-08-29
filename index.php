@@ -1,5 +1,5 @@
 <?php
-    $version = '0.0.2 - Butter';
+    $version = '0.0.3 - Chalice';
 
     function request_path(): string
     {
