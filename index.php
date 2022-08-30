@@ -8,11 +8,12 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <title>Plankton <?= get_version() . ' ' . request_path() ?></title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
         <meta charset="UTF-8">
         <meta name="description" content="This is a small performant template for building smaller websites.">
-        <title>Plankton <?= get_version() ?></title>
 
         <link rel="stylesheet" href="/styles/normalize.css">
         <link rel="stylesheet" href="/styles/icons.css">
