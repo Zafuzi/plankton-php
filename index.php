@@ -22,6 +22,12 @@
 
     <body>
 
+        <?php
+            // uncomment this to see the route at the top of the page
+            // only for debugging
+            // print_r(request_path())
+        ?>
+
         <?php include('./views/header.php') ?>
 
         <main class="padding">
