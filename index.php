@@ -8,7 +8,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Plankton <?= get_version() . ' ' . request_path() ?></title>
+        <title>Plankton <?= request_path() . ' ' . get_version() ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
