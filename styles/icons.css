@@ -6,3 +6,5 @@
 .icon.icon-home:before { content: "\1F3E0"; }
 .icon.icon-help:before { content: "\1F6A9"; }
 .icon.icon-paint:before { content: "\1F3A8"; }
+.icon.icon-unlock:before { content: "\1F513"; }
+.icon.icon-lock:before { content: "\1F510"; }

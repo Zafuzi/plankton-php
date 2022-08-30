@@ -1,5 +1,13 @@
 <?php
-    $version = '0.0.4 - Dappledorf';
+    $version = '0.0.5 - Eggercough';
+
+    require("./lib/console.php");
+    require("./lib/db.php");
+    require("./lib/session.php");
+
+    function request_method(): string {
+        return $_SERVER["REQUEST_METHOD"];
+    }
 
     function request_path(): string
     {
@@ -21,9 +29,12 @@
         return $path;
     }
 
-    function isActiveRoute(string $compareRoute): string
-    {
-        return $compareRoute === request_path() ? "active" : "";
+    function activeIfRouteActive(array $compareRoutes): string {
+        return in_array(request_path(), $compareRoutes) ? 'active' : '';
+    }
+
+    function hideIfRouteActive(array $compareRoutes): string {
+        return in_array(request_path(), $compareRoutes) ? 'hid' : '';
     }
 ?>
 
@@ -46,24 +57,26 @@
         <header class="padding">
             <h1>Plankton <?= $version?></h1>
             <nav>
-                <a class="<?= isActiveRoute('home')?>" href="/">Home</a>
-                <a class="<?= isActiveRoute('help')?>" href="/help">Help</a>
-                <a class="<?= isActiveRoute('editor')?>" href="/editor?gameName=test_game_name">Editor</a>
+                <a class="<?= activeIfRouteActive(['home'])?>" href="/">Home</a>
+                <a class="<?= activeIfRouteActive(['help'])?>" href="/help">Help</a>
+                <a class="<?= activeIfRouteActive(['editor'])?>" href="/editor?gameName=test_game_name">Editor</a>
+                <a class="<?= activeIfRouteActive(['login', 'register'])?>" href="/login">Login</a>
             </nav>
         </header>
 
         <main class="padding">
             <?php
-                if(isActiveRoute('home'))
-                {
+                if(activeIfRouteActive(['home'])) {
                     require('./views/home.php');
                 }
-                if(isActiveRoute('help'))
-                {
+                if(activeIfRouteActive(['help'])) {
                     require('./views/help.php');
                 }
-                if(isActiveRoute('editor')) {
+                if(activeIfRouteActive(['editor'])) {
                     require('./views/editor.php');
+                }
+                if(activeIfRouteActive(['login', 'register'])) {
+                    require('./views/login.php');
                 }
             ?>
         </main>

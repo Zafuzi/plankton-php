@@ -103,18 +103,16 @@ input[type=email] {
 	color: var(--darker);
 }
 
-footer {
-	min-height: 50px;
-}
-
-#headerNavigation a {
-	text-decoration: none;
+header nav a {
 	font-size: 18pt;
 	color: var(--neutral);
 }
+header nav a.active {
+	color: var(--darker);
+}
 
-#headerNavigation a.active {
-	color: var(--darkest);
+footer {
+	min-height: 50px;
 }
 
 /* CLASSES */
