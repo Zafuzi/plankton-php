@@ -7,23 +7,33 @@ function request_method(): string {
     return $_SERVER["REQUEST_METHOD"];
 }
 
-function request_path(): string
-{
-    $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-    $parts = array_diff_assoc($request_uri);
-    if (empty($parts))
-    {
+function request_path(): string{
+    // DON'T EVER USE THIS AS AN ARGUMENT TO THE DATABASE TO AVOID XSS
+    // remove beginning and ending / from uri
+    $request_uri = htmlspecialchars_decode(trim($_SERVER['REQUEST_URI'], '/'), ENT_QUOTES);
+
+    // split the path on each remaining /
+    $parts = explode('/', $request_uri);
+
+    // this happens if the route is '/'
+    if (empty($parts)) {
         return '/';
     }
-    $path = implode('/', $parts);
-    if (($position = strpos($path, '?')) !== FALSE)
-    {
+
+    // if the path contains query args
+    $path = $request_uri;
+    $position = strpos($path, '?');
+
+    if ($position !== FALSE) {
+        // remove the query args
         $path = substr($path, 0, $position);
     }
-    if(empty($path))
-    {
-        return "home";
+
+    // if the route was '/' then we return 'home' instead
+    if(empty($path)) {
+        return 'home';
     }
+
     return $path;
 }
 
