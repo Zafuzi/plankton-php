@@ -1,8 +1,7 @@
 <?php
-    include("./lib/lib.php");
-    include("./lib/console.php");
-    include("./lib/db.php");
-    include("./lib/session.php");
+    require("./lib/lib.php");
+    require("./lib/db.php");
+    require("./lib/session.php");
 ?>
 
 <!doctype html>
