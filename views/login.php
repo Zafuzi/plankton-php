@@ -27,7 +27,7 @@
 
         if ($result !== null) {
             $_SESSION['username'] = $result[0];
-            return true;
+            $login_errorMessage = 'Success';
         } else {
             $login_errorMessage = 'User not found';
         }
@@ -59,6 +59,7 @@
 
         if($result->affected_rows > 0)
         {
+            $login_errorMessage = 'Success';
             return true;
         }
 
@@ -72,7 +73,7 @@
 
     if(request_method() === "POST" && request_path() === "login")
     {
-        $login_errorMessage = login() ? "Success" : "Failure";
+       login();
     }
 
     if(request_method() === "POST" && request_path() === "register")
@@ -83,6 +84,7 @@
 
 <link rel="stylesheet" href="/styles/login.css">
 
+<p> <?= print_r($_SESSION) ?> </p>
 <p class="assertive <?= hidIfNoErrorMessage($login_errorMessage) ?>">
     <?= $login_errorMessage ?>
 </p>
@@ -91,7 +93,6 @@
     <h1>Login <i class="icon icon-unlock"></i></h1>
     <form class="flex flow-column gap-16" method="POST" action="/login" id="loginForm">
 
-        <p> <?= print_r($_SESSION) ?> </p>
 
         <label class="flex flow-column gap-8">
             Username
