@@ -208,6 +208,7 @@ footer {
 .neutral { color: var(--neutral); }
 .neutral-dark { color: var(--neutral-dark); }
 .positive { color: var(--positive); }
+.positive-dark { color: var(--positive-dark); }
 
 .hover-light:hover { color: var(--light); }
 .hover-dark:hover { color: var(--dark); }

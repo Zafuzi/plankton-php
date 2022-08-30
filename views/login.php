@@ -1,6 +1,4 @@
 <?php
-    global $requestMethod;
-
     $login_errorMessage = "";
 
     /**
@@ -23,16 +21,24 @@
 
         // attempt to login!
         $database = get_db_connection();
-        $result = $database->getObj("SELECT username from users where username=? and pw_hash=?", [$username, password_hash($password, PASSWORD_DEFAULT)]);
-
-        if ($result !== null) {
-            $_SESSION['username'] = $result[0];
-            $login_errorMessage = 'Success';
-        } else {
-            $login_errorMessage = 'User not found';
+        if($database === false)
+        {
+            logError("Failed to connect to the database during login");
+            return false;
         }
 
-        return false;
+        $result = $database->getObj("SELECT username from users where username=? and pw_hash=?", [$username, password_hash($password, PASSWORD_DEFAULT)]);
+
+        if($result === false)
+        {
+            $login_errorMessage = 'User not found';
+            return false;
+        }
+
+        $_SESSION['username'] = $result[0];
+        $login_errorMessage = 'Success';
+
+        return true;
     }
 
     /**
@@ -55,15 +61,22 @@
         }
 
         $database = get_db_connection();
+        if($database === false)
+        {
+            logError("Failed to connect to the database during login");
+            return false;
+        }
+
         $result = $database->execute("INSERT INTO users (username, email, pw_hash, pw_salt) VALUES(?, ?, ?, ?)", [$username, $email, password_hash($password, PASSWORD_DEFAULT), ""]);
 
-        if($result->affected_rows > 0)
+        if($result === false || $result->affected_rows > 0)
         {
             $login_errorMessage = 'Success';
             return true;
         }
 
         return false;
+
     }
 
     function hidIfNoErrorMessage(string $error): string

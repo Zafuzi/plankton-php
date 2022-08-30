@@ -3,10 +3,15 @@
 
 $db_connections = new ArrayObject();  // stores all db connections
 
-function get_db_connection()
-{
+function get_db_connection() : DB | false {
     global $db_connections;
-    $config = parse_ini_file('db.ini', true);
+
+    $config = @parse_ini_file('db.ini', true);
+
+    if($config === false) {
+        return false;
+    }
+
     $host = $config['host'];
     $user = $config['user'];
     $password = $config['password'];
@@ -53,6 +58,7 @@ class DB
 
     function execute($sql, $arr = null)
     {
+        // TODO rewrite to be functional and gracefully handle errors
         // XXX Make this log issues/errors in ops event log with the query and args
         // rather than just using ass(), so I can see what exactly went wrong.
         assert(is_string($sql), "sql argument isn't a string");

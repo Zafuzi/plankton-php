@@ -53,7 +53,7 @@ function logError($data): void
         $console = implode(',', $console);
     }
 
-    echo "<script>console.error('ERROR: " . $console . "' );</script>";
+    echo "<p class='assertive'>$console</p>";
 }
 function logInfo($data): void
 {
@@ -63,5 +63,5 @@ function logInfo($data): void
         $console = implode(',', $console);
     }
 
-    echo "<script>console.log('Info: " . $console . "' );</script>";
+    echo "<p class='positive-dark'>$console</p>";
 }

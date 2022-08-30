@@ -21,7 +21,6 @@
     </head>
 
     <body>
-
         <?php
             // uncomment this to see the route at the top of the page
             // only for debugging
