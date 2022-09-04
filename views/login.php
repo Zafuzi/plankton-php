@@ -3,8 +3,8 @@
 
     /**
      * Tries to log-in, returns true if it succeeds and false if fails
-     * @return bool
-     */
+    * @return bool
+    */
     function login(): bool
     {
         if (request_method() !== "POST") {
@@ -18,25 +18,6 @@
             $login_errorMessage = 'Must provide username and password!';
             return false;
         }
-
-        // attempt to login!
-        $database = get_db_connection();
-        if($database === false)
-        {
-            logError("Failed to connect to the database during login");
-            return false;
-        }
-
-        $result = $database->getObj("SELECT username from users where username=? and pw_hash=?", [$username, password_hash($password, PASSWORD_DEFAULT)]);
-
-        if($result === false)
-        {
-            $login_errorMessage = 'User not found';
-            return false;
-        }
-
-        $_SESSION['username'] = $result[0];
-        $login_errorMessage = 'Success';
 
         return true;
     }
@@ -60,23 +41,7 @@
             return false;
         }
 
-        $database = get_db_connection();
-        if($database === false)
-        {
-            logError("Failed to connect to the database during login");
-            return false;
-        }
-
-        $result = $database->execute("INSERT INTO users (username, email, pw_hash, pw_salt) VALUES(?, ?, ?, ?)", [$username, $email, password_hash($password, PASSWORD_DEFAULT), ""]);
-
-        if($result === false || $result->affected_rows > 0)
-        {
-            $login_errorMessage = 'Success';
-            return true;
-        }
-
-        return false;
-
+        return true;
     }
 
     function hidIfNoErrorMessage(string $error): string
