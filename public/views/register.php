@@ -27,5 +27,5 @@
         }
     }
 ?>
-<link rel="stylesheet" href="/styles/login.css">
+<link rel="stylesheet" href="public/styles/login.css">
 

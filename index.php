@@ -1,7 +1,7 @@
 <?php
-    require("./lib/lib.php");
-    require("./lib/db.php");
-    require("./lib/session.php");
+    require("./public/lib/lib.php");
+    require("./public/lib/db.php");
+    require("./public/lib/session.php");
 ?>
 
 <!doctype html>
@@ -14,10 +14,10 @@
         <meta charset="UTF-8">
         <meta name="description" content="This is a small performant template for building smaller websites.">
 
-        <link rel="stylesheet" href="/styles/normalize.css">
-        <link rel="stylesheet" href="/styles/icons.css">
-        <link rel="stylesheet" href="/styles/app.css">
-        <link rel="stylesheet" href="/styles/home.css">
+        <link rel="stylesheet" href="public/styles/normalize.css">
+        <link rel="stylesheet" href="public/styles/icons.css">
+        <link rel="stylesheet" href="public/styles/app.css">
+        <link rel="stylesheet" href="public/styles/home.css">
     </head>
 
     <body>
@@ -27,21 +27,21 @@
             // print_r(request_path())
         ?>
 
-        <?php include('./views/header.php') ?>
+        <?php include('./public/views/header.php') ?>
 
         <main class="padding">
             <?php
                 if(activeIfRouteActive(['home'])) {
-                    include('./views/home.php');
+                    include('./public/views/home.php');
                 }
                 if(activeIfRouteActive(['help'])) {
-                    include('./views/help.php');
+                    include('./public/views/help.php');
                 }
                 if(activeIfRouteActive(['editor'])) {
-                    include('./views/editor.php');
+                    include('./public/views/editor.php');
                 }
                 if(activeIfRouteActive(['login', 'register'])) {
-                    include('./views/login.php');
+                    include('./public/views/login.php');
                 }
             ?>
         </main>

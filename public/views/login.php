@@ -60,7 +60,7 @@
     }
 ?>
 
-<link rel="stylesheet" href="/styles/login.css">
+<link rel="stylesheet" href="public/styles/login.css">
 
 <p> <?= print_r($_SESSION) ?> </p>
 <p class="assertive <?= hidIfNoErrorMessage($login_errorMessage) ?>">
